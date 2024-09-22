@@ -40,7 +40,7 @@
             <li class="nav-item dropdown"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button"
                     aria-haspopup="true" aria-expanded="false">
                     <div class="avatar avatar-md"><img style="max-height: 42px;" class="avatar-img rounded-circle"
-                            src="{{ file_exists(public_path('uploads/user/'.Auth::user()->Profile->profile_image)) ? asset('uploads/user/'.Auth::user()->Profile->profile_image)  : asset('no-image.png') }}"
+                            src="{{ Auth::user()->getAvatar(true) }}"
                             alt="{{Auth::user()->email}}"></div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end pt-0">

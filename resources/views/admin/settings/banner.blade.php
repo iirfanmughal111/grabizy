@@ -33,6 +33,7 @@ Banner
                     @foreach($banners as $banner)
                     <div class="col-md-6 mb-3">
                         <div class="card bg-dark text-white">
+                            <span class="badge badge-{{ $banner->is_active ? "primary" : 'danger' }}">{{ $banner->is_active ? "Acitve" : 'Disabled' }}</span>
                             <img src="{{asset('images/banner/'.$banner->image)}}" class="card-img admin-banner-image"  alt="...">
                             <div class="card-img-overlay d-flex justify-content-center align-items-center flex-column">
                                 <h5 class="text-center">{{$banner->content_heading}}</h5>

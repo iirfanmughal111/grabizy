@@ -103,18 +103,10 @@ Dashbord
                           <td class="text-center">
                             <div class="avatar avatar-md">
                               <a href="{{url('admin/users/profile/'.$user->id)}}">
-                            @if ($user->Profile && isset($user->Profile->profile_image))
-
-                              <img class=" avatar-img dashboard-image"
-                                  src="{{ file_exists(public_path('uploads/user/'.$user->Profile->profile_image)) ? asset('uploads/user/'.$user->Profile->profile_image) : asset('/no-image.png') }}">
-
-
-                              <input type="hidden" name="old_image"
-                                  value="{{$user->Profile->profile_image}}" />
-                                  @else
+                            
                                   <img class=" avatar-img dashboard-image"
-                                  src="{{ file_exists(asset('/no-image.png')) ? asset('/no-image.png') : asset('/no-image.png') }}">
-                              @endif
+                                  src="{{ $user->getAvatar(true) }}">
+                             
                               </a>
                            </div>
                           </td>

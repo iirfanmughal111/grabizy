@@ -107,13 +107,10 @@ Users
                                         <div>{{$key+1}}</div>
                                     </td>
                                     <td>
-                                        @if (isset($user->Profile) && $user->Profile->profile_image!=null)
+                                        
                                         <a href="{{url('admin/users/profile/'.$user->id)}}"><img class="table-image"
-                                                src="{{ file_exists(public_path('/uploads/user/'.$user->Profile->profile_image)) ?   asset('/uploads/user/'.$user->Profile->profile_image) : asset('no-image.png')}}" /></a>
-                                        @else
-                                        <a href="{{url('admin/users/profile/'.$user->id)}}"><img class="table-image"
-                                                src="{{asset('no-image.png')}}" /></a>
-                                        @endif
+                                                src="{{ $user->getAvatar() }}" /></a>
+                                       
                                     </td>
                                     <td class="text-capitalize">
                                         <a class="nav-link" href="{{url('admin/users/profile/'.$user->id)}}">

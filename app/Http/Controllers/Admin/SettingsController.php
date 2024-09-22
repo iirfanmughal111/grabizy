@@ -11,7 +11,7 @@ use App\Models\Banner;
 
 class SettingsController extends Controller
 {
-
+    protected $logo_path,$banner_path,$per_page;
     public function __construct()
     {
         $this->logo_path = public_path('/images/logo');
@@ -120,7 +120,7 @@ class SettingsController extends Controller
     
     public function bannerAction(){
         check_permission_access('listing banner'); 
-        $banners = Banner::paginate($this->per_page);
+        $banners = Banner::orderby('is_active','desc')->paginate($this->per_page);
         return view('admin.settings.banner',compact('banners'));	
 
     }

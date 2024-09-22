@@ -82,4 +82,35 @@ class User extends Authenticatable
     {
         return $query->where('email', 'LIKE', '%' . $email . '%');
     }
+
+    function random_light_color() {
+        return sprintf('%06X', mt_rand(0, 0xFFFFFF));
+    }
+    function random_dark_color() {
+        $dt = '';
+        for($o=1;$o<=3;$o++)
+        {
+            $dt .= str_pad( dechex( mt_rand( 0, 127 ) ), 2, '0', STR_PAD_LEFT);
+        }
+        return $dt;
+    }
+    public function getAvatar($rounded = false,$size = 128)
+    {
+        // Check if the user has a profile and a profile image
+        if (isset($this->Profile) && $this->Profile->profile_image != null) {
+            // Check if the profile image exists in the public directory
+            $imagePath = public_path('/uploads/user/' . $this->Profile->profile_image);
+            if (file_exists($imagePath)) {
+                return asset('/uploads/user/' . $this->Profile->profile_image);
+            }
+        }
+
+        // Fallback to UI Avatars if no profile image exists
+        return 'https://ui-avatars.com/api/?background=' . $this->random_dark_color() .
+            '&color=' . $this->random_light_color() .
+            '&size=' . $size .
+            '&bold=true&name=' . $this->name .
+            '&rounded='. $rounded;
+    }
+
 }
