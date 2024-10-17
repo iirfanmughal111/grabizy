@@ -29,8 +29,7 @@ class CategoryController extends Controller
     }
 
 	public function category(Request $request){
-		$cj = new CJService();
-        $cj->createCategories();
+	
 
 		check_permission_access('listing categories');
 		$query = Category::where('id', '!=', null);
@@ -156,6 +155,7 @@ class CategoryController extends Controller
 
 	public function category_enalble_disable(Request $request)
 	{
+		
 		check_permission_access('edit categories');
 		if($request->ajax()){
 			$data = [];
