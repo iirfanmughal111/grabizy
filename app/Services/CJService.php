@@ -78,7 +78,7 @@ class CJService
         $response = $http->get($url);
         if ($response->status() == 200){
             $parentCategories = $response->object()->data;
-            Category::whereNotNull('cj_catId')->delete();
+            Category::whereNotNull('cj_catId')->forceDelete();
             foreach ($parentCategories as $category){
                 // if (isset($category->categoryFirstList)){
                 //     foreach($category->categoryFirstList as $subCategory){
