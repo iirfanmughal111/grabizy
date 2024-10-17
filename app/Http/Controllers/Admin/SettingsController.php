@@ -119,8 +119,8 @@ class SettingsController extends Controller
     
     
     public function bannerAction(){
-        $cj = new CJService();
-        $cj->createCategories();
+        // $cj = new CJService();
+        // $cj->createCategories();
         check_permission_access('listing banner'); 
         $banners = Banner::orderby('is_active','desc')->paginate($this->per_page);
         return view('admin.settings.banner',compact('banners'));	
