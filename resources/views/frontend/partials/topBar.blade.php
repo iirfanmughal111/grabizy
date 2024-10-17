@@ -31,6 +31,10 @@
                             
                             </a>
                             <ul class="dropdown-menu" style="background-color:#000;">
+                                @if(Auth::check() && Auth::user()->hasRole('admin'))
+                                    <li><a href="{{url('/admin')}}">Admin Dashboard</a></li>
+                                @endif
+								
                               
 								<li><a href="{{url('/dashboard')}}">Dashboard</a></li>
 								<li><a href="{{url('/dashboard/my-orders')}}">My Orders</a></li>

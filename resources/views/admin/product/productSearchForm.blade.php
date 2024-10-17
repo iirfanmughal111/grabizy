@@ -1,5 +1,5 @@
-<form action="{{ url('admin/product') }}" method="POST" id="searchForm">
-    @csrf
+<form action="{{ url('admin/product') }}" method="get" id="searchForm">
+    {{-- @csrf --}}
     <div class="row">
         <div class="col-md-12 mb-4">
             <div class="card h-100">

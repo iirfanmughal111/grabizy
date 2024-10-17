@@ -127,7 +127,7 @@ class CJService
             'pageNum' => $page
            // 'searchType' => 2, //tending
         ];
-        for ($page = 1 ; $page < 6 ; $page++){
+        for ($page = 1 ; $page < 10 ; $page++){
             $queryParams['pageNum'] = $page;
            
             $http = Http::withHeaders([

@@ -160,7 +160,7 @@ Product
     </div>
     <div class="row">
         <div class="col-12 d-flex justify-content-center">
-            {{ $products->links() }}
+            {{ $products->appends(request()->input())->links() }}
         </div>
     </div>
 
