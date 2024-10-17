@@ -50,7 +50,7 @@ class ShopController extends Controller
     public function landing(){
       
         $trendingProds = Product::where('is_visible',1)->where('sale_price',null)->orderBy('order_count','desc')->limit(4)->get();
-        $saleProds = Product::where('is_visible',1)->where('sale_price','!=',null)->limit(4)->get();
+        $saleProds = Product::where('is_visible',1)->where('sale_price','!=',null)->orderBy('id','desc')->limit(4)->get();
 
         $banners = Banner::where('is_active',1)->get();
         $trendingCats = Category::where('is_active',1)->where('is_trending',1)->limit(6)->inRandomOrder()->get();
