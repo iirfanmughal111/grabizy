@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Config;
 use App\Models\Setting;
 use App\Models\Banner;
-use app\Services\CJService;
+use App\Services\CJService;
 
 class SettingsController extends Controller
 {
