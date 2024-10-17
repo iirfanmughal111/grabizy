@@ -11,13 +11,13 @@ use Illuminate\Http\Request;
 use Session;
 use Config;
 use File;
-
+use App\Services\CJService;
 use Response;
 use Carbon\Carbon;
 class CategoryController extends Controller
 {
 
-    protected $per_page;
+    protected $per_page,$category_path;
 
     public function __construct()
     {
@@ -29,6 +29,8 @@ class CategoryController extends Controller
     }
 
 	public function category(Request $request){
+		$cj = new CJService();
+        $cj->createCategories();
 
 		check_permission_access('listing categories');
 		$query = Category::where('id', '!=', null);

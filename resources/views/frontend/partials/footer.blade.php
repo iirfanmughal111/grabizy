@@ -78,7 +78,7 @@
     <!-- Start copyright  -->
     <div class="footer-copyright">
         <p class="footer-company">All Rights Reserved. &copy; {{date("Y")}} <a href="#">{{showSiteTitle()}}</a> Developed By :
-            <a href="mailto:iirfanmughal111@gmail.com">Muhammad Irfan</a></p>
+            <a href="mailto:iirfandeveloper@gmail.com">Muhammad Irfan</a></p>
     </div>
     <!-- End copyright  -->
 

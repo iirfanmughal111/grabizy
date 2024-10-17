@@ -342,7 +342,7 @@ return [
     'client_statuses'                      => 'Client statuses',
     'currencies'                           => 'Currencies',
     'main_currency'                        => 'Main currency',
-    'currency_symbol'                        => 'Rs.',
+    'currency_symbol'                        => 'PKR.',
     'documents'                            => 'Documents',
     'file'                                 => 'File',
     'income_source'                        => 'Income source',

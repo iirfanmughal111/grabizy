@@ -35,10 +35,10 @@ Shop
                     <div class="right-product-box">
                         <div class="product-item-filter row">
                             <div class="col-12 col-sm-8">
-                            <div>  Showing
+                            {{-- <div>  Showing
                                 {{$products->firstItem()}}–{{$products->lastItem()}}
                                 of {{$products->total()}} results
-                            </div>
+                            </div> --}}
                                
                             </div>
                             <div class="col-12 col-sm-4 text-center text-sm-right">
@@ -115,7 +115,7 @@ Shop
                             </div>
                                 <div class="row">
                                     <div class="col-12 d-flex justify-content-center">
-                                        {{$products->links()}}
+                                        {{$products->appends(request()->input())->links()}}
                                     </div>
                                 </div>
                         </div>
@@ -136,8 +136,8 @@ Shop
                             <div class="title-left">
                                 <h3>Categories</h3>
                             </div>
-                        <form method="post" action="{{url('/shop')}}" id="filterForm">
-                        @csrf
+                        <form method="get" action="{{url('/shop')}}" id="filterForm">
+                        {{-- @csrf --}}
                             <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
                                 
                              

@@ -38,6 +38,7 @@ class Product extends Model
         'order_count',
         'cart_count',
         'wishList_count',
+        'cj_pId'
     ];
 
     public function Tags()
@@ -55,7 +56,9 @@ class Product extends Model
 
     public function featured_image()
     {
-      
+      if ($this->cj_pId) 
+        return $this->featured_image;
+    
         if (file_exists( public_path() . '/uploads/products/featured_images/'.$this->featured_image) && isset($this->featured_image)) {
             return '/uploads/products/featured_images/' . $this->featured_image;
         } else {

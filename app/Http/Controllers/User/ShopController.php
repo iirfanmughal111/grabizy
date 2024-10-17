@@ -18,7 +18,7 @@ use  App\Models\Shipping;
 use  App\Models\Setting;
 use  App\Models\Auction;
 use  App\Models\Banner;
-
+use App\Services\CJService;
 use Symfony\Component\HttpFoundation\Cookie;
 
 use App\Mail\UserNoticeEmail;
@@ -34,7 +34,7 @@ use DB;
 use Response;
 class ShopController extends Controller
 {
-
+    protected $per_page,$min_price,$max_price,$margin;
     public function __construct()
     {
         $this->per_page = getPerPageProducts();
@@ -48,7 +48,7 @@ class ShopController extends Controller
 
     }
     public function landing(){
-        
+      
         $trendingProds = Product::where('is_visible',1)->where('sale_price',null)->orderBy('order_count','desc')->limit(4)->get();
         $saleProds = Product::where('is_visible',1)->where('sale_price','!=',null)->limit(4)->get();
 
@@ -110,6 +110,7 @@ class ShopController extends Controller
         if (isset($request->categories) && count($request->categories) > 0 ){
             $query->whereIn('category_id',$request->categories);
             $filters['categories'] = $request->categories;
+           
         }
         if (
             isset($request->min_price) 
@@ -156,8 +157,8 @@ class ShopController extends Controller
 
         }
         $data['filters'] =  $filters;
-        $data['products'] =  $query->inRandomOrder()->paginate($this->per_page); 
-
+        $data['products'] =  $query->inRandomOrder()->simplePaginate($this->per_page); 
+        
             return    $data;            
 
 

@@ -22,8 +22,8 @@
             </div>
             <div class="why-text">
                 <h4>{{$product->title}}</h4>
-                <h5> <span
-                            class="{{$product->sale_price!=null ? 'text-decoration-line-through text-muted' : ''}}"> {{trans('global.currency_symbol')}}{{$product->regular_price}}</span>
+                <h5> <del
+                            class="{{$product->sale_price!=null ? 'text-decoration-line-through text-muted' : ''}}"> {{trans('global.currency_symbol')}}{{$product->regular_price}}</del>
                         <span class=""> {{trans('global.currency_symbol')}}{{$product->sale_price!=null ? $product->sale_price : ''}} </span></h5>
             </div>
         </div>

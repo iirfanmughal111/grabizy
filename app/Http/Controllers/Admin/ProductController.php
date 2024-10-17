@@ -14,7 +14,7 @@ use App\Models\Order;
 use App\Models\Auction;
 use App\Models\Bidding;
 use  App\Models\OrderItem;
-
+use App\Services\CJService;
 use App\Http\Controllers\Controller;
 use Session;
 use Config;
@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    protected $per_page;
+    protected $per_page,$featured_path,$gallery_path;
 
     public function __construct()
     {
@@ -78,7 +78,8 @@ class ProductController extends Controller
 
     public function productCreate(request $req){
 
-     
+        $cj = new CJService();
+        $cj->createProducts();
             check_permission_access('add product');   
             $categories = Category::where('is_active',1)->get();
 

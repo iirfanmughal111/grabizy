@@ -22,6 +22,8 @@ class Category extends Model
         'is_featured',
         'is_trending',
         'image_url', 
+        'cj_catId',
+        'featured_img',
     ];
 
     public function Product()
