@@ -123,7 +123,7 @@ class CJService
         $queryParams = [
             'categoryId' => $cat_id,  
             'minPrice' => 0.1,  
-            'maxPrice' => 100, 
+            'maxPrice' => 300, 
             'pageNum' => $page
            // 'searchType' => 2, //tending
         ];
