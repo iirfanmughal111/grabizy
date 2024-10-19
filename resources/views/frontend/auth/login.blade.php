@@ -59,11 +59,11 @@ Login
                                
 
                             </form>
-                            <hr class="py-1">
+                            {{-- <hr class="py-1">
                             
                                 <a class="d-flex my-2 align-items-center justify-content-center" href="{{ url('auth/google') }}">
                                     <img src="{{asset('images/googleLogin.png')}}" class="w-50 img-fluid">
-                                </a>
+                                </a> --}}
                            
                         </div>
                     </div>

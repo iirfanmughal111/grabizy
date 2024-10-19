@@ -57,6 +57,10 @@ Thumbs.db
 /vendor
 .env
 .env.backup
+# Node modules
+
+# Composer vendor directory
+vendor/
 
 .phpunit.result.cache
 Homestead.json
