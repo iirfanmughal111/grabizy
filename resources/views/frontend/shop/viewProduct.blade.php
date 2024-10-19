@@ -61,9 +61,9 @@
                                 @else
                                 {{trans('global.currency_symbol')}}{{$product->regular_price}}
                             @endif</h5>
-                            <input type="text" id="vid" name="vid" value="0" />
-                            <input type="text" id="vTitle" name="vTitle" value="0" />
-                            <input type="text" id="vImg" name="vImg" value="0" />
+                            <input type="hidden" id="vid" name="vid" value="0" />
+                            <input type="hidden" id="vTitle" name="vTitle" value="0" />
+                            <input type="hidden" id="vImg" name="vImg" value="0" />
                         <p class="available-stock"><span> More than {{ rand(12,50) }} available / <a href="#">{{ rand(2,47) }} sold </a></span><p>
                             @if ($product->short_description)
                             <h4>Short Description:</h4>
