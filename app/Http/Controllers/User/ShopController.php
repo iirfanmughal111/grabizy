@@ -432,6 +432,8 @@ class ShopController extends Controller
                                 'order_id' => $new_order->id,
                                 'product_id' => $c->product_id,
                                 'quantity' => $c->count,
+                                'cj_Id' => $c->cj_vId,
+
                             ]);
                             if ($c->Product->sale_price){
                                 $sum += ($c->Product->sale_price*$c->count);
@@ -444,6 +446,7 @@ class ShopController extends Controller
                            
                                // Product::whereId( $c->product_id)->decrement('cart_count');
                                $weight += $c->Product->weight*$c->count;
+                               
                                 $c->delete();
                         }
                         // Product::whereIn('id',$productIds)->increment('order_count');

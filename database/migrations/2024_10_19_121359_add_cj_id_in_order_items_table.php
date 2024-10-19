@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrderItemsTable extends Migration
+class AddCjIdInOrderItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,9 @@ class CreateOrderItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('order_items', function (Blueprint $table) {
-            $table->id();
-            $table->integer('order_id')->nullable();
-
-            $table->integer('product_id')->nullable();
-            $table->integer('quantity')->nullable();
+        Schema::table('order_items', function (Blueprint $table) {
+            $table->string('cj_Id', 255)->nullable()->after('id');
             
-            $table->timestamps();
         });
     }
 
@@ -31,6 +26,9 @@ class CreateOrderItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_items');
+        Schema::table('order_items', function (Blueprint $table) {
+            $table->string('cj_Id');
+            
+        });
     }
 }
