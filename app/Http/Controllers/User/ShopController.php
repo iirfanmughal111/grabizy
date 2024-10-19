@@ -153,15 +153,13 @@ class ShopController extends Controller
             elseif ($request->sort_by== 'popularity'){
                 $query->orderBy('order_count', 'desc');
             }
+
             $filters['sort_by'] = $request->sort_by;
 
         }
         $data['filters'] =  $filters;
         $data['products'] =  $query->inRandomOrder()->simplePaginate($this->per_page); 
-        
-            return    $data;            
-
-
+        return    $data;            
     }
 
             public function view(Request $request){
@@ -180,8 +178,14 @@ class ShopController extends Controller
                         ->telegram()
                         ->whatsapp()        
                         ->reddit();
+                        $product->cjProductVarients = [];
+                       if ($product->cj_pId){
+                       $cjService = new CJService();
+                       $product->cjProductVarients = $cjService->getProductById($product->cj_pId);
+                       }
                        
                         $similarProducts = Product::where('is_visible',1)->where('id','!=',$product->id)->where('category_id',$product->category_id)->limit(8)->inRandomOrder()->get();
+                        
                         $cartIds = $wishListIds = [];
                         if (!count($similarProducts)){
                             $similarProducts = Product::where('is_visible',1)->where('id','!=',$product->id)->orderBy('order_count','desc')->limit(8)->get();
@@ -254,6 +258,7 @@ class ShopController extends Controller
                 $data['success'] = false;
                 $data['msg'] = 'Something went wrong';
                 if(Auth::check()){
+                  
                     $data['login'] = true;
                     $cartData = [];
                     if ($request->product_id){
@@ -286,10 +291,20 @@ class ShopController extends Controller
                         $data['msg'] = 'Cart product quantity updateed successfully';
                     }
                     elseif (empty($existedProduct) && $existedProduct == null){
-                            $prod = Cart::create($cartData);
-                            if ($prod){                  
-                                $data['msg'] = '<strong>('.$prod->count.')</strong> items added to Cart ';
-                            }
+                        if ($product->cj_pId && $request->vid  && $request->vid > 0){
+                            $cartData['cj_vId'] = $request->vid;
+                            $cartData['cj_vTitle'] = $request->vTitle;
+                            $cartData['cj_vImg'] = $request->vImg;
+                        }
+                        else{
+                            $data['success'] = false;
+                            $data['msg'] = 'Product have multiple varients. Select one <strong> varient.</strong>';
+                            return $data;
+                        }
+                        $prod = Cart::create($cartData);
+                        if ($prod){                  
+                            $data['msg'] = '<strong>('.$prod->count.')</strong> items added to Cart ';
+                        }
                         $product->update(['cart_count'=>$product->cart_count+1]);
 
                     }
@@ -546,7 +561,7 @@ class ShopController extends Controller
                         $cart = Cart::where('user_id',Auth::user()->id)->get(); 
                         $weight = 0;
                         foreach($cart as $key => $product){
-                            $weight += $product->Product->weight*$product->count;
+                            $weight += intval($product->Product->weight)*$product->count;
                         }
                    
                         $shipping = Shipping::where('country',Auth::user()->Profile->country)->where('region',Auth::user()->Profile->region)->where('is_active',1)->where('weight_from','<=',$weight)->where('weight_to','>=',$weight)->first();

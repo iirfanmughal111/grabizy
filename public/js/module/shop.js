@@ -99,6 +99,10 @@ $(document).ready(function() {
 		$(document).on('click','.add-to-cart', function(e) {
 
 			var jsProduct_id = $(this).attr('data-product-id');
+			var jsvid = $('#vid').val();
+			var jsvTitle = $('#vTitle').val();
+			var jsvImg = $('#vImg').val();
+			
 			var jsStatus= $(this).attr('data-status');
 			if (jsStatus == undefined){
 				jsStatus = 0;
@@ -124,7 +128,7 @@ $(document).ready(function() {
 				dataType: 'json',
 				 url: base_url+'/shop/add-to-cart',
 			
-				data: {status:jsStatus,product_id:jsProduct_id,quantity:jsquantity,_token:csrf_token},
+				data: {vImg:jsvImg,vTitle:jsvTitle,status:jsStatus,product_id:jsProduct_id,quantity:jsquantity,vid:jsvid,_token:csrf_token},
 				success: function(data) {
 					
 					 // IF TRUE THEN SHOW SUCCESS MESSAGE  
@@ -234,5 +238,38 @@ $(document).ready(function() {
 					
 					});
 	
+					
+					$(document).on('click','.varients', function(e) {
+						console.log($(this));
+						$('.varients').removeClass('varient-selected');
+						$(this).toggleClass('varient-selected');
+						$('#product-carousel .active img').attr('src', $(this).attr('src'));
+						$('#product_title').text( $(this).attr('title'))
 
+						$('#vid').val( $(this).attr('data-vid'))
+						$('#vTitle').val( $(this).attr('title'))
+						$('#vImg').val(  $(this).attr('src'))
+					});
+					// Initialize carousel
+						$('#variantCarousel').carousel({
+							interval: false, // Disable auto sliding
+							wrap: false // Disable wrapping around
+						});
+
+						// Next button event listener to move 3 items forward
+						$('#variantCarousel .carousel-control-next').click(function () {
+							for (var i = 0; i < 5; i++) {
+								$('#variantCarousel').carousel('next');
+							}
+						});
+
+						// Previous button event listener to move 3 items backward
+						$('#variantCarousel .carousel-control-prev').click(function () {
+							for (var i = 0; i < 5; i++) {
+								$('#variantCarousel').carousel('prev');
+							}
+						});
+
+  
+						
 });

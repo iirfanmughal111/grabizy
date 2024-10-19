@@ -118,16 +118,17 @@ class CJService
     protected function getCjCategories(){
         return Category::wherenotNull('cj_catId')->where('is_active',1)->get();
     }
-    protected function getProducts($category,$page=1){
+    protected function getProducts($category,$piId=false){
         $cat_id = $category->cj_catId;
+
         $queryParams = [
             'categoryId' => $cat_id,  
             'minPrice' => 0.1,  
             'maxPrice' => 300, 
-            'pageNum' => $page
+          
            // 'searchType' => 2, //tending
         ];
-        for ($page = 1 ; $page < 10 ; $page++){
+        for ($page = 1 ; $page < 11 ; $page++){
             $queryParams['pageNum'] = $page;
            
             $http = Http::withHeaders([
@@ -145,6 +146,25 @@ class CJService
             }
         }
         return $response->object();
+
+    }
+    public function getProductById($piId){
+
+        $queryParams = [
+            'pid' => $piId,  
+        ];
+           
+            $http = Http::withHeaders([
+                'CJ-Access-Token' =>  $this->cj_config->token, 
+            ])->baseUrl($this->base_url);
+            $url = '/product/variant/query';
+            $response = $http->get($url, $queryParams);
+            
+            if ($response->status() == 200){
+                return $response->object()->data;
+            }
+            return [];
+     
 
     }
     public function createProducts()
@@ -182,7 +202,7 @@ class CJService
 
         }
      
-        return $type == 'regular' ?  $this->dollor_rate * 2 :  $this->dollor_rate * 1.5; 
+        return $type == 'regular' ?  $this->dollor_rate * (rand(200, 250) / 100) :  $this->dollor_rate * 2; 
     }
     protected function saveProduct($product,$category){
         
@@ -195,7 +215,7 @@ class CJService
         $newProd['sale_price'] = $this->getPrice($product->sellPrice,'sale');
         $newProd['regular_price'] =$this->getPrice($product->sellPrice);
         $newProd['is_visible']  =  1;
-        $newProd['weight'] = trim($product->productWeight);
+        $newProd['weight'] = intval($product->productWeight);
         $newProd['featured_image'] = $product->productImage;
        
         return Product::create($newProd);  

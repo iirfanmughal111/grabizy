@@ -567,6 +567,7 @@ class ComposerStaticInitbdf44e157c9af8695b4b3b402ba8cce6
     );
 
     public static $classMap = array (
+        'App\\Console\\Commands\\PullCjData' => __DIR__ . '/../..' . '/app/Console/Commands/PullCjData.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Admin\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminController.php',
@@ -608,6 +609,7 @@ class ComposerStaticInitbdf44e157c9af8695b4b3b402ba8cce6
         'App\\Models\\Banner' => __DIR__ . '/../..' . '/app/Models/Banner.php',
         'App\\Models\\Bidding' => __DIR__ . '/../..' . '/app/Models/Bidding.php',
         'App\\Models\\Cart' => __DIR__ . '/../..' . '/app/Models/Cart.php',
+        'App\\Models\\CjConfig' => __DIR__ . '/../..' . '/app/Models/CjConfig.php',
         'App\\Models\\ContentType' => __DIR__ . '/../..' . '/app/Models/ContentType.php',
         'App\\Models\\Gallery' => __DIR__ . '/../..' . '/app/Models/Gallery.php',
         'App\\Models\\Message' => __DIR__ . '/../..' . '/app/Models/Message.php',
@@ -629,6 +631,7 @@ class ComposerStaticInitbdf44e157c9af8695b4b3b402ba8cce6
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\Services\\CJService' => __DIR__ . '/../..' . '/app/Services/CJService.php',
         'App\\Services\\TabbyService' => __DIR__ . '/../..' . '/app/Services/TabbyService.php',
         'App\\View\\Components\\AppLayout' => __DIR__ . '/../..' . '/app/View/Components/AppLayout.php',
         'App\\View\\Components\\GuestLayout' => __DIR__ . '/../..' . '/app/View/Components/GuestLayout.php',

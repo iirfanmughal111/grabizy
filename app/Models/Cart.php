@@ -17,6 +17,9 @@ class Cart extends Model
         'product_id',
         'count',
         'user_id',
+        'cj_vId',
+        'cj_vImg',
+        'cj_vTitle',
     ];
 
     public function Product()

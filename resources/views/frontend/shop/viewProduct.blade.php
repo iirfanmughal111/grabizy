@@ -55,13 +55,16 @@
                 </div>
                 <div class="col-xl-7 col-lg-7 col-md-6">
                     <div class="single-product-details">
-                        <h2>{{$product->title}}</h2>
+                        <h2 id="product_title">{{$product->title}}</h2>
                         <h5> @if ($product->sale_price)
                                 <del>{{trans('global.currency_symbol')}}{{$product->regular_price}}</del> {{trans('global.currency_symbol')}}{{$product->sale_price}}
                                 @else
                                 {{trans('global.currency_symbol')}}{{$product->regular_price}}
                             @endif</h5>
-                        <p class="available-stock"><span> More than 20 available / <a href="#">8 sold </a></span><p>
+                            <input type="text" id="vid" name="vid" value="0" />
+                            <input type="text" id="vTitle" name="vTitle" value="0" />
+                            <input type="text" id="vImg" name="vImg" value="0" />
+                        <p class="available-stock"><span> More than {{ rand(12,50) }} available / <a href="#">{{ rand(2,47) }} sold </a></span><p>
                             @if ($product->short_description)
                             <h4>Short Description:</h4>
                             <p>{{$product->short_description}}</p>
@@ -99,7 +102,7 @@
                             <span>uncategorized</span>
                             @endif
                             </li>
-            
+           
                             @if ($product->Tags->count())
                             <li class="px-3 py-2 mb-1 bg-white text-muted"><strong class="text-uppercase text-dark">Tags:</strong>
                                 @foreach($product->Tags  as $tag)
@@ -108,7 +111,12 @@
                                 @endforeach
                             </li>
                             @endif
-                        </ul>
+                        </ul> 
+                        @if(count($product->cjProductVarients))
+                        <h2>Varients ({{ count($product->cjProductVarients) }})</h2>
+                            @include('frontend.shop.productVarients')
+                        @endif
+                       
 							<!-- <div class="share-bar">
 								<a class="btn hvr-hover" href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a>
 								<a class="btn hvr-hover" href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a>
@@ -176,5 +184,10 @@
   loop:false //**This
 
 });
+
+
     </script>
     @endsection
+    <script>
+
+    </script>

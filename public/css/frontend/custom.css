@@ -874,3 +874,8 @@ height: 40px !important;
 .product-bg{
   background: #F5F5D4;
 }
+
+
+.varient-selected{
+  border: red 2px solid;
+}

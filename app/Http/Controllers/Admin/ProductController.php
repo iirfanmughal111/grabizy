@@ -78,8 +78,8 @@ class ProductController extends Controller
 
     public function productCreate(request $req){
 
-        // $cj = new CJService();
-        // $cj->createProducts();
+        $cj = new CJService();
+        $cj->createProducts();
             check_permission_access('add product');   
             $categories = Category::where('is_active',1)->get();
 

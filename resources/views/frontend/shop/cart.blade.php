@@ -45,12 +45,18 @@ Cart
                             <tr>
                                 <td class="thumbnail-img">
                                     <a href="{{url('shop/view/'.$product->Product->id.'/'.$product->Product->title)}}">
-                                <img class="img-fluid" src="{{$product->Product->featured_image()}}" alt="" />
+                                        {{-- {{ $product }} --}}
+                                        @if($product->cj_vId)
+                                            <img class="img-fluid" src="{{$product->cj_vImg}}" alt="" />
+                                        @else
+                                    <img class="img-fluid" src="{{$product->Product->featured_image()}}" alt="" />
+                                    @endif
                             </a>
                                 </td>
                                 <td class="name-pr">
                                     <a href="{{url('shop/view/'.$product->Product->id.'/'.$product->Product->title)}}">
-                                    {{ Str::limit($product->Product->title, 30) }}
+                                        @php $prod_title = $product->cj_vId ? $product->cj_vTitle : $product->Product->title; @endphp
+                                    {{ Str::limit($prod_title, 30) }}
                             </a>
                                 </td>
                                 <td class="price-pr">
