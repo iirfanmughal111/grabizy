@@ -141,17 +141,17 @@ $(document).ready(function() {
 							}
 						}
 						$('.cart-count').html(data.cart_count);
+						$('#vid').val('');
+						$('#vTitle').val('');
+						$('#vImg').val('');
 		
 					 }
-					 
-
-						if (data.login){
-							notification(data.success, data.msg, 2800);
-						}else{
-							// window.open("https://www.educative.io/", "_blank");
-							window.location.replace(base_url+"/login");
-						}
-				
+					if (data.login){
+						notification(data.success, data.msg, 2800);
+					}else{
+						// window.open("https://www.educative.io/", "_blank");
+						window.location.replace(base_url+"/login");
+					}
 				},
 				error: function(xhr, status, error) {
 					//console.log(xhr.responseText);
@@ -240,7 +240,7 @@ $(document).ready(function() {
 	
 					
 					$(document).on('click','.varients', function(e) {
-						console.log($(this));
+						
 						$('.varients').removeClass('varient-selected');
 						$(this).toggleClass('varient-selected');
 						$('#product-carousel .active img').attr('src', $(this).attr('src'));

@@ -202,7 +202,7 @@ class CJService
 
         }
      
-        return $type == 'regular' ?  $this->dollor_rate * (rand(200, 250) / 100) :  $this->dollor_rate * 2; 
+        return $type == 'regular' ?  $this->dollor_rate * (rand(200, 250) / 100) :  $this->dollor_rate *  (rand(150, 200) / 100); 
     }
     protected function saveProduct($product,$category){
         

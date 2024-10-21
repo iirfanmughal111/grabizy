@@ -316,17 +316,12 @@ class ProductController extends Controller
             $data['success'] = false;
             $deleteProduct = Product::findOrFail($request->prodId);
             if ($deleteProduct){
-            $auctions = Auction::where('product_id',$request->prodId)->get();
-            foreach($auctions as $auction){
-                Bidding::where('auction_id',$auction->auction_id)->delete();
-                $auction->delete();
-            }
                 OrderItem::where('product_id',$request->prodId)->delete();
             
-            Cart::where('product_id',$request->prodId)->delete();
-            Tag::where('product_id',$request->prodId)->delete();
+                Cart::where('product_id',$request->prodId)->delete();
+                Tag::where('product_id',$request->prodId)->delete();
 
-            WishList::where('product_id',$request->prodId)->delete();
+                WishList::where('product_id',$request->prodId)->delete();
             $gallery = Gallery::where('product_id',$request->prodId)->get();
             foreach($gallery as $image){
                 if (file_exists($this->gallery_path.'/'.$image->value)){
