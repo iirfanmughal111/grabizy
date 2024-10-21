@@ -31,7 +31,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
+     protected $per_page;
      public function __construct()
     {
        // $this->category_path = public_path('/uploads/users');
@@ -73,11 +73,18 @@ class UserController extends Controller
         }
 
        if (isset($request->email)){
-       $query->where('email', 'LIKE', '%' . $request->email . '%');
-       $filters['email'] = $request->email;
+        $query->where('email', 'LIKE', '%' . $request->email . '%');
+        $filters['email'] = $request->email;
   
        }
-            $users =  $query->orderBy('created_at','DESC')->paginate($this->per_page);
+       if($request->role){
+        $query->whereHas('roles', function($q) use ($request) {
+            $q->where('name', $request->role);
+        });
+        $filters['role'] = $request->role;
+       }
+        
+       $users =  $query->orderBy('created_at','DESC')->paginate($this->per_page);
 
         return view('admin.user.user',compact('users','roles','filters'));	
   

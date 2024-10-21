@@ -8,7 +8,7 @@
                         <div class="form-group">
                             <h6>Search User</h6>
                             <div class="row">
-                                <div class="col-md-6 mb-md-0 mb-3">
+                                <div class="col-md-4 mb-md-0 mb-3">
                                     <label class="default-input-field custom-input">
                                         <input type="text"  name="name" value="{{isset($filters['name']) ? $filters['name'] : ''}}"
                                             aria-describedby="description" placeholder="&nbsp;" />
@@ -17,7 +17,7 @@
                                     </label>
                                     
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                 <label class="default-input-field custom-input">
                                         <input type="text"  name="email"
                                             aria-describedby="description" value="{{isset($filters['email']) ? $filters['email'] : ''}}" placeholder="&nbsp;" />
@@ -26,9 +26,22 @@
                                     </label>
 
                                 </div>
-                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label p-0 m-0">
+                                    <span class="default-input-placeholder">Role</span>
 
+                                    </label>
+                                    <select class="form-control  my-0 select-picker" name="role">
+                                        <option value="">Select Role</option>
+                                        @foreach($roles as $role)
+                                        <option value="{{$role->name}}" {{isset($filters['role']) && $filters['role'] == $role->name ? 'selected' : ''}}>{{$role->name}}</option>
+                                        @endforeach
+                                    </select>
+                                       
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                     <div class="row">
                         <div class="form-group col-lg-6">
